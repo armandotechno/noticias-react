@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react';  
 import styles from './Formulario.module.css';
+import PropTypes from 'prop-types';
 import useSelect from '../hooks/useSelect';
 
 const Formulario = ({guardarCategoria}) => {
@@ -7,19 +8,18 @@ const Formulario = ({guardarCategoria}) => {
     const OPCIONES = [
         { value: 'general', label: 'General'},
         { value: 'business', label: 'Negocios'},
-        { value: 'entertainment', label: 'Entretenimineto'},
+        { value: 'entertainment', label: 'Entretenimiento'},
         { value: 'health', label: 'Salud'},
         { value: 'science', label: 'Ciencia'},
         { value: 'sports', label: 'Deportes'},
-        { value: 'technology', label: 'Tecnología'}
-
+        { value: 'technology', label: 'Tecnología'},
     ]
 
-    //utilizar el custom hook
-    const [ categoria, SelectNoticias ] = useSelect('general', OPCIONES);
+    // utilizar custom hook
+    const [ categoria, SelectNoticias ] = useSelect('general', OPCIONES);
 
-    // submit al form, pasar categoria al app.js
-    const buscarNoticias =  e => {
+    // submit al form, pasar categoria a app.js
+    const buscarNoticias = e => {
         e.preventDefault();
 
         guardarCategoria(categoria);
@@ -33,7 +33,7 @@ const Formulario = ({guardarCategoria}) => {
                 >
                     <h2 className={styles.heading}>Encuentra Noticias por Categoría</h2>
 
-                    <SelectNoticias />
+                    <SelectNoticias />
 
                     <div className="input-field col s12">
                         <input 
@@ -46,6 +46,10 @@ const Formulario = ({guardarCategoria}) => {
             </div>
         </div>
      );
+}
+
+Formulario.propTypes = {
+    guardarCategoria: PropTypes.func.isRequired
 }
  
 export default Formulario;
